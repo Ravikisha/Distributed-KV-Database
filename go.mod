@@ -1,8 +1,10 @@
 module github.com/ravikisha/distributedKV
 
-go 1.21.5
+go 1.22
+
+toolchain go1.22.8
 
 require (
-	github.com/boltdb/bolt v1.3.1 // indirect
+	go.etcd.io/bbolt v1.3.11 // indirect
 	golang.org/x/sys v0.26.0 // indirect
 )
