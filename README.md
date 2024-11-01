@@ -5,6 +5,8 @@
 
 The Distributed Key-Value Database is a scalable, fault-tolerant key-value store implemented in Go. It is designed to handle large amounts of data across multiple nodes while providing high availability and performance. This project demonstrates key features such as sharding, replication, and multithreading to ensure efficient data storage and retrieval.
 
+> Check out the [blog post](https://medium.com/@ravikishan63392/from-theory-to-practice-developing-a-distributed-key-value-database-with-sharding-and-replication-541dfef74fec) for a detailed explanation of the project.
+
 ## Features
 
 - **Distributed Architecture**: Supports multiple nodes for data distribution and redundancy.
