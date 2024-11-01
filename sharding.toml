@@ -1,0 +1,23 @@
+[[shards]]
+name = "Mumbai"
+idx = 0
+address = "127.0.0.2:6000"
+replicas = ["127.0.0.22:6000"]
+
+[[shards]]
+name = "Delhi"
+idx = 1
+address = "127.0.0.3:6000"
+replicas = ["127.0.0.33:6000"]
+
+[[shards]]
+name = "Chennai"
+idx = 2
+address = "127.0.0.4:6000"
+replicas = ["127.0.0.44:6000"]
+
+[[shards]]
+name = "Bangalore"
+idx = 3
+address = "127.0.0.5:6000"
+replicas = ["127.0.0.55:6000"]

@@ -1,12 +1,27 @@
-.PHONY: all build run clean
+.PHONY: all build run clean stop
 
 all: build
 
 build:
-    go build -o main main.go
+	go build -o distributedKV.exe main.go
 
-run: build
-    ./main
+run: stop build
+	@echo off
+	taskkill /F /IM distributedKV.exe >nul 2>&1 || exit /b 0
+	# sleep 0.1
 
-clean:
-    rm -f main
+	# Run instances with sharding configurations
+	start "" distributedKV.exe -db-location=Mumbai.db -http-addr=127.0.0.2:6000 -config-file=sharding.toml -shard=Mumbai
+	start "" distributedKV.exe -db-location=Mumbai-r.db -http-addr=127.0.0.22:6000 -config-file=sharding.toml -shard=Mumbai -replica
+	start "" distributedKV.exe -db-location=Delhi.db -http-addr=127.0.0.3:6000 -config-file=sharding.toml -shard=Delhi
+	start "" distributedKV.exe -db-location=Delhi-r.db -http-addr=127.0.0.33:6000 -config-file=sharding.toml -shard=Delhi -replica
+	start "" distributedKV.exe -db-location=Chennai.db -http-addr=127.0.0.4:6000 -config-file=sharding.toml -shard=Chennai
+	start "" distributedKV.exe -db-location=Chennai-r.db -http-addr=127.0.0.44:6000 -config-file=sharding.toml -shard=Chennai -replica
+	start "" distributedKV.exe -db-location=Bangalore.db -http-addr=127.0.0.5:6000 -config-file=sharding.toml -shard=Bangalore
+	start "" distributedKV.exe -db-location=Bangalore-r.db -http-addr=127.0.0.55:6000 -config-file=sharding.toml -shard=Bangalore -replica
+
+stop:
+	-taskkill /F /IM distributedKV.exe >nul 2>&1 || exit /b 0
+
+clean: stop
+	del /f distributedKV.exe
